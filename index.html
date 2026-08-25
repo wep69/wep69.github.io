@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>wep69 — Pacotes R</title>
+<style>
+  :root { --bg:#0f172a; --card:#1e293b; --txt:#e2e8f0; --acc:#38bdf8; --acc2:#34d399; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--txt); font-family:'Segoe UI',system-ui,sans-serif; line-height:1.6; }
+  .wrap { max-width:960px; margin:0 auto; padding:48px 24px; }
+  header h1 { font-size:2rem; color:#fff; }
+  header p { color:#94a3b8; margin-top:.5rem; }
+  .featured { background:linear-gradient(135deg,#1e293b,#0c4a6e); border:1px solid #334155; border-radius:14px; padding:28px; margin-top:28px; }
+  .featured h2 { color:var(--acc); font-size:1.35rem; }
+  .badge { display:inline-block; background:#065f46; color:#a7f3d0; border-radius:999px; padding:2px 12px; font-size:.78rem; margin-left:8px; vertical-align:middle; }
+  .featured p { margin:.7rem 0; color:#cbd5e1; }
+  .btns a { display:inline-block; margin:10px 10px 0 0; padding:9px 18px; border-radius:8px; text-decoration:none; font-weight:600; }
+  .btn-doc { background:var(--acc); color:#082f49; }
+  .btn-gh { border:1px solid var(--acc); color:var(--acc); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:16px; margin-top:26px; }
+  .card { background:var(--card); border:1px solid #334155; border-radius:10px; padding:18px; transition:.15s; }
+  .card:hover { border-color:var(--acc); transform:translateY(-2px); }
+  .card h3 a { color:#fff; text-decoration:none; font-size:1.02rem; }
+  .card span { color:#64748b; font-size:.85rem; }
+  footer { margin-top:44px; color:#475569; font-size:.85rem; text-align:center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>wep69 · Pacotes R</h1>
+    <p>Pacotes de análise de dados, estatística experimental e fenotipagem digital — validados localmente com <code>R CMD check --as-cran</code>.</p>
+  </header>
+
+  <section class="featured">
+    <h2>OmniPhenoR <span class="badge">v1.0.0 · check OK</span></h2>
+    <p><strong>Unified Multiscale Plant Digital Phenotyping Workflows.</strong> Da imagem ao fenótipo longitudinal: segmentação, índices RGB, deep learning nativo em R (<code>torch</code>), séries temporais de plantas, modelos mistos de medidas repetidas, MIAPPE/BrAPI, auditoria FAIR e pacotes de pesquisa portáteis.</p>
+    <p style="font-size:.88rem;color:#94a3b8">223 funções exportadas · 240 blocos implementados · 44 vinhetas pré-compiladas · fixtures físicas com ground-truth SHA-256</p>
+    <div class="btns">
+      <a class="btn-doc" href="OmniPhenoR/">📚 Documentação</a>
+      <a class="btn-gh" href="https://github.com/wep69/OmniPhenoR">GitHub →</a>
+    </div>
+    <p style="margin-top:14px"><code>install.packages("pak", repos = "https://r-lib.github.io/p/pak/dev/")<br>pak::pak("wep69/OmniPhenoR")</code></p>
+  </section>
+
+  <div class="grid">
+    <div class="card"><h3><a href="https://github.com/wep69/multiRegFlow">multiRegFlow</a></h3><span>Fluxos de regressão múltipla</span></div>
+    <div class="card"><h3><a href="https://github.com/wep69/agriExpFlow">agriExpFlow</a></h3><span>Experimentos agronômicos</span></div>
+    <div class="card"><h3><a href="https://github.com/wep69/mixRSMflow">mixRSMflow</a></h3><span>Misturas e superfícies de resposta</span></div>
+    <div class="card"><h3><a href="https://github.com/wep69/rsmFlow">rsmFlow</a></h3><span>Response surface modelling</span></div>
+    <div class="card"><h3><a href="https://github.com/wep69/agriFormFlow">agriFormFlow</a></h3><span>Formulações agronômicas</span></div>
+    <div class="card"><h3><a href="https://github.com/wep69/agriDoseReg">agriDoseReg</a></h3><span>Dose-resposta agronômica</span></div>
+    <div class="card"><h3><a href="https://github.com/wep69/agriGLMflow">agriGLMflow</a></h3><span>GLM/GLMM/GAM agrícolas</span></div>
+    <div class="card"><h3><a href="https://github.com/wep69/nmaFlow">nmaFlow</a></h3><span>Network meta-analysis</span></div>
+    <div class="card"><h3><a href="https://github.com/wep69/CCAflow">CCAflow</a></h3><span>Correlação canônica</span></div>
+    <div class="card"><h3><a href="https://github.com/wep69/gamlssPosthoc">gamlssPosthoc</a></h3><span>Pós-hoc GAMLSS</span></div>
+    <div class="card"><h3><a href="https://github.com/wep69/biblioIntegrator">biblioIntegrator</a></h3><span>Análise bibliométrica</span></div>
+    <div class="card"><h3><a href="https://github.com/wep69/pcaLab">pcaLab</a></h3><span>PCA interativo</span></div>
+  </div>
+
+  <footer>© 2026 Walter Esfrain Pereira · hospedado com GitHub Pages</footer>
+</div>
+</body>
+</html>

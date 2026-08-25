@@ -1,0 +1,52 @@
+pandoc: '3.9'
+pkgdown: 2.2.1
+pkgdown_sha: ~
+articles:
+  v00-foundations-to-advanced-tutorial: v00-foundations-to-advanced-tutorial.html
+  v01-rgb-indices: v01-rgb-indices.html
+  v02-texture-analysis: v02-texture-analysis.html
+  v03-leaf-health-workflow: v03-leaf-health-workflow.html
+  v04-validation-reproducibility: v04-validation-reproducibility.html
+  v05-deep-learning-foundations: v05-deep-learning-foundations.html
+  v06-semantic-segmentation: v06-semantic-segmentation.html
+  v07-image-classification: v07-image-classification.html
+  v08-training-validation-and-leakage: v08-training-validation-and-leakage.html
+  v09-model-registry-and-provenance: v09-model-registry-and-provenance.html
+  v10-uncertainty-and-calibration: v10-uncertainty-and-calibration.html
+  v11-classical-vs-deep-learning: v11-classical-vs-deep-learning.html
+  v12-large-images-and-tiling: v12-large-images-and-tiling.html
+  v13-python-backends: v13-python-backends.html
+  v14-plantcv-integration: v14-plantcv-integration.html
+  v15-object-detection: v15-object-detection.html
+  v16-instance-segmentation: v16-instance-segmentation.html
+  v17-yolo-workflows: v17-yolo-workflows.html
+  v18-leafmachine2-integration: v18-leafmachine2-integration.html
+  v19-coco-and-yolo-datasets: v19-coco-and-yolo-datasets.html
+  v20-object-to-plant-phenotypes: v20-object-to-plant-phenotypes.html
+  v21-cross-engine-validation: v21-cross-engine-validation.html
+  v22-python-environments-and-reproducibility: v22-python-environments-and-reproducibility.html
+  v23-longitudinal-phenotyping: v23-longitudinal-phenotyping.html
+  v24-growth-curves: v24-growth-curves.html
+  v25-thermal-time: v25-thermal-time.html
+  v26-repeated-measures: v26-repeated-measures.html
+  v27-functional-data-analysis: v27-functional-data-analysis.html
+  v28-disease-progress: v28-disease-progress.html
+  v29-stress-and-recovery: v29-stress-and-recovery.html
+  v30-uav-time-series: v30-uav-time-series.html
+  v31-environmental-covariates: v31-environmental-covariates.html
+  v32-temporal-validation: v32-temporal-validation.html
+  v33-experiment-data-model: v33-experiment-data-model.html
+  v34-data-catalogs-and-storage: v34-data-catalogs-and-storage.html
+  v35-parquet-arrow-duckdb: v35-parquet-arrow-duckdb.html
+  v36-miappe-interoperability: v36-miappe-interoperability.html
+  v37-brapi-client-workflows: v37-brapi-client-workflows.html
+  v38-fair-data-and-metadata: v38-fair-data-and-metadata.html
+  v39-provenance-checksums-lineage: v39-provenance-checksums-lineage.html
+  v40-controlled-vocabularies-and-units: v40-controlled-vocabularies-and-units.html
+  v41-portable-research-packages: v41-portable-research-packages.html
+  v42-publication-and-reuse: v42-publication-and-reuse.html
+  v43-omniphenor-1.0-integrated-workflow: v43-omniphenor-1.0-integrated-workflow.html
+last_built: 2026-08-25T01:01Z
+urls:
+  reference: https://wep69.github.io/OmniPhenoR/reference
+  article: https://wep69.github.io/OmniPhenoR/articles
