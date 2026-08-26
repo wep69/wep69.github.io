@@ -1,0 +1,38 @@
+pandoc: '3.10'
+pkgdown: 2.2.1
+pkgdown_sha: ~
+articles:
+  v00-foundations-to-advanced-tutorial: v00-foundations-to-advanced-tutorial.html
+  v01-priors-and-bayesian-evidence: v01-priors-and-bayesian-evidence.html
+  v02-crd-rcbd-latin-square: v02-crd-rcbd-latin-square.html
+  v03-factorial-experiments: v03-factorial-experiments.html
+  v04-rope-effect-indices-comparisons: v04-rope-effect-indices-comparisons.html
+  v05-split-plot-experiments: v05-split-plot-experiments.html
+  v06-cmdstanr-parallel-diagnostics: v06-cmdstanr-parallel-diagnostics.html
+  v07-reporting-frequentist-crosswalk: v07-reporting-frequentist-crosswalk.html
+  v08-quantitative-regression-and-ancova: v08-quantitative-regression-and-ancova.html
+  v09-bayesian-biological-and-economic-optima: v09-bayesian-biological-and-economic-optima.html
+  v10-mixed-models-random-slopes-and-hierarchies: v10-mixed-models-random-slopes-and-hierarchies.html
+  v11-repeated-measures-and-residual-structures: v11-repeated-measures-and-residual-structures.html
+  v12-split-split-and-strip-plot-experiments: v12-split-split-and-strip-plot-experiments.html
+  v13-nongaussian-glmm: v13-nongaussian-glmm.html
+  v14-nonlinear-agronomic-response-models: v14-nonlinear-agronomic-response-models.html
+  v15-bayesian-splines-and-gaussian-processes: v15-bayesian-splines-and-gaussian-processes.html
+  v16-bayesian-bootstrap-and-flexible-nonparametric-inference: v16-bayesian-bootstrap-and-flexible-nonparametric-inference.html
+  v17-pymc-and-pymc-bart: v17-pymc-and-pymc-bart.html
+  v18-spatial-field-trials: v18-spatial-field-trials.html
+  v19-genotype-by-environment: v19-genotype-by-environment.html
+  v20-multivariate-responses: v20-multivariate-responses.html
+  v21-measurement-error-and-missing-data: v21-measurement-error-and-missing-data.html
+  v22-censored-responses: v22-censored-responses.html
+  v23-ordinal-outcomes: v23-ordinal-outcomes.html
+  v24-finite-mixture-models: v24-finite-mixture-models.html
+  v25-distributional-regression: v25-distributional-regression.html
+  v26-model-uncertainty-and-predictive-averaging: v26-model-uncertainty-and-predictive-averaging.html
+  v27-projection-predictive-selection: v27-projection-predictive-selection.html
+  v28-bayesian-decision-analysis-utility-and-regret: v28-bayesian-decision-analysis-utility-and-regret.html
+  v29-value-of-information-and-research-decisions: v29-value-of-information-and-research-decisions.html
+last_built: 2026-08-26T01:08Z
+urls:
+  reference: https://wep69.github.io/bayesAgriFlow/reference
+  article: https://wep69.github.io/bayesAgriFlow/articles
