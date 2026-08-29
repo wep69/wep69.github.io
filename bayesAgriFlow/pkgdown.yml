@@ -32,7 +32,14 @@ articles:
   v27-projection-predictive-selection: v27-projection-predictive-selection.html
   v28-bayesian-decision-analysis-utility-and-regret: v28-bayesian-decision-analysis-utility-and-regret.html
   v29-value-of-information-and-research-decisions: v29-value-of-information-and-research-decisions.html
-last_built: 2026-08-26T01:08Z
-urls:
-  reference: https://wep69.github.io/bayesAgriFlow/reference
-  article: https://wep69.github.io/bayesAgriFlow/articles
+  v30-advanced-experimental-designs: v30-advanced-experimental-designs.html
+  v31-bayesian-ccd-response-surfaces: v31-bayesian-ccd-response-surfaces.html
+  v32-design-efficiency-pseudoquadratic-augmentation: v32-design-efficiency-pseudoquadratic-augmentation.html
+  v33-spatiotemporal-foundations: v33-spatiotemporal-foundations.html
+  v34-gaussian-fields-and-temporal-dependence: v34-gaussian-fields-and-temporal-dependence.html
+  v35-spatiotemporal-prediction-monitoring: v35-spatiotemporal-prediction-monitoring.html
+  v36-remote-sensing-data-and-indices: v36-remote-sensing-data-and-indices.html
+  v37-uav-satellite-phenotyping: v37-uav-satellite-phenotyping.html
+  v38-sensor-fusion-and-uncertainty: v38-sensor-fusion-and-uncertainty.html
+  v39-posterior-maps-and-change: v39-posterior-maps-and-change.html
+last_built: 2026-08-29T03:33Z
