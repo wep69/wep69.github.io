@@ -1,0 +1,18 @@
+pandoc: '3.9'
+pkgdown: 2.2.1
+pkgdown_sha: ~
+articles:
+  v00-complete-workflow: v00-complete-workflow.html
+  v01-foundations: v01-foundations.html
+  v02-criterion-engine: v02-criterion-engine.html
+  v03-soil-terrain-water-constraints: v03-soil-terrain-water-constraints.html
+  v04-composite-suitability: v04-composite-suitability.html
+  v05-mcda-ahp-topsis: v05-mcda-ahp-topsis.html
+  v06-climate-scenarios: v06-climate-scenarios.html
+  v07-uncertainty-ensembles: v07-uncertainty-ensembles.html
+  v08-multicrop-decision: v08-multicrop-decision.html
+  v09-reproducibility-interoperability: v09-reproducibility-interoperability.html
+last_built: 2026-09-01T00:57Z
+urls:
+  reference: https://wep69.github.io/agriLandSuit/reference
+  article: https://wep69.github.io/agriLandSuit/articles
