@@ -1,0 +1,26 @@
+pandoc: '3.9'
+pkgdown: 2.2.1
+pkgdown_sha: ~
+articles:
+  v00-foundations-to-unified-wavelet: v00-foundations-to-unified-wavelet.html
+  v01-data-design: v01-data-design.html
+  v02-partial-wavelet-coherence: v02-partial-wavelet-coherence.html
+  v03-multiple-wavelet-coherence: v03-multiple-wavelet-coherence.html
+  v04-null-models: v04-null-models.html
+  v05-field-aware-inference: v05-field-aware-inference.html
+  v06-driver-attribution: v06-driver-attribution.html
+  v07-driver-selection: v07-driver-selection.html
+  v08-phase-and-lead-lag: v08-phase-and-lead-lag.html
+  v09-predictive-direction: v09-predictive-direction.html
+  v10-phenology-alignment: v10-phenology-alignment.html
+  v11-drought-propagation: v11-drought-propagation.html
+  v12-wavelet-coherence-networks: v12-wavelet-coherence-networks.html
+  v13-dynamic-network-persistence: v13-dynamic-network-persistence.html
+  v14-spatial-inference: v14-spatial-inference.html
+  v15-spatial-scalability: v15-spatial-scalability.html
+  v16-reproducible-workflows: v16-reproducible-workflows.html
+  v17-publication-and-validation: v17-publication-and-validation.html
+last_built: 2026-09-07T09:15Z
+urls:
+  reference: https://wep69.github.io/agriWaveInfer/reference
+  article: https://wep69.github.io/agriWaveInfer/articles

@@ -1,0 +1,316 @@
+# agriWaveInfer 1.0.0
+
+**Consolidated Scientific Release — source-frozen; runtime certification
+pending.**
+
+`agriWaveInfer` provides a reproducible inference layer for multiscale
+agroclimatic and environmental systems. Version 1.0.0 freezes the
+scientific API developed from 0.1.0 through 0.9.0; it does not introduce
+a new methodological domain.
+
+## Installation
+
+``` r
+
+# complete, rebuilding the vignettes (recommended for local validation)
+remotes::install_github(
+  "wep69/agriWaveInfer",
+  dependencies = TRUE,
+  build_vignettes = TRUE,
+  upgrade = "ask",
+  force = FALSE
+)
+
+# fast path without vignettes (pak)
+# pak::pak("wep69/agriWaveInfer")
+```
+
+Site: <https://wep69.github.io/agriWaveInfer>
+
+## Publication-oriented workflow
+
+``` r
+
+policy <- awi_workflow_spec(
+  selection = "cea",
+  phase_summary = TRUE,
+  strict = TRUE
+)
+
+fit <- awi_workflow(
+  y = yield_series,
+  drivers = list(ENSO = enso, PDO = pdo, Rain = rainfall),
+  period_range = c(24, 84),
+  workflow_spec = policy
+)
+
+awi_report(fit, "analysis-report.md")
+awi_reproducibility_bundle(fit, "analysis-bundle")
+awi_publication_check(".", expected_version = "1.0.0")
+```
+
+The workflow layer records the underlying specification objects and
+execution status. It does not redefine the numerical estimators and does
+not turn selected drivers or phase lead into causal effects.
+
+## Spatial workflow
+
+``` r
+
+sp <- awi_spatial_spec(
+  chunk_size = 32,
+  max_memory_mb = 1024,
+  retain_fields = FALSE,
+  crs = "EPSG:4326"
+)
+
+z <- awi_spatial_coherence(
+  response = pixel_series,
+  driver = enso,
+  coords = coordinates,
+  period_range = c(24, 84),
+  spatial_spec = sp
+)
+
+awc_map <- awi_coherence_map(z, metric = "awc")
+lag_map <- awi_lag_map(z)
+```
+
+For several candidate drivers:
+
+``` r
+
+dm <- awi_driver_map(
+  response = pixel_series,
+  drivers = list(ENSO = enso, PDO = pdo, AMO = amo),
+  coords = coordinates,
+  method = "single",
+  driver_spec = awi_driver_spec(metric = "awc")
+)
+```
+
+## Key safeguards
+
+- The requested period/time domain and COI policy are part of every
+  summary.
+- Full coefficient fields are discarded by default after spatial
+  summaries are calculated.
+- Driver dominance is association-based and does not establish
+  causality.
+- Phase-derived lag uses circular statistics and does not establish a
+  causal effect.
+- `terra` and `stars` are optional representation backends; they are not
+  required by the analytical core.
+
+## Release status
+
+`SOURCE-FROZEN / RUNTIME-PENDING` after source audit and archive
+verification. Runtime R gates are documented in `WINDOWS_VALIDATION.md`
+and must be executed before claiming full validation.
+
+# Package index
+
+## Package overview
+
+- [`agriWaveInfer`](https://wep69.github.io/agriWaveInfer/reference/agriWaveInfer-package.md)
+  [`agriWaveInfer-package`](https://wep69.github.io/agriWaveInfer/reference/agriWaveInfer-package.md)
+  : agriWaveInfer: Multiscale Statistical Inference for Agroclimatic
+  Systems
+
+## S7 scientific contracts
+
+- [`awi_design()`](https://wep69.github.io/agriWaveInfer/reference/awi_design.md)
+  : Create a formal scientific design
+- [`awi_wavelet_spec()`](https://wep69.github.io/agriWaveInfer/reference/awi_wavelet_spec.md)
+  : Create a formal wavelet specification
+- [`awi_condition_spec()`](https://wep69.github.io/agriWaveInfer/reference/awi_condition_spec.md)
+  : Numerical conditioning specification for multivariate wavelet
+  inference
+- [`awi_null_spec()`](https://wep69.github.io/agriWaveInfer/reference/awi_null_spec.md)
+  : Specify a surrogate null model and field-aware inference policy
+- [`awi_driver_spec()`](https://wep69.github.io/agriWaveInfer/reference/awi_driver_spec.md)
+  : Specify a driver-attribution and parsimony policy
+- [`awi_phase_spec()`](https://wep69.github.io/agriWaveInfer/reference/awi_phase_spec.md)
+  : Specify phase and lead-lag interpretation rules
+- [`awi_phenology_spec()`](https://wep69.github.io/agriWaveInfer/reference/awi_phenology_spec.md)
+  : Specify phenology alignment rules
+- [`awi_propagation_spec()`](https://wep69.github.io/agriWaveInfer/reference/awi_propagation_spec.md)
+  : Specify multiscale propagation interpretation rules
+- [`awi_network_spec()`](https://wep69.github.io/agriWaveInfer/reference/awi_network_spec.md)
+  : Specify rules for time-frequency network construction
+- [`awi_spatial_spec()`](https://wep69.github.io/agriWaveInfer/reference/awi_spatial_spec.md)
+  : Specify memory-aware spatial wavelet execution
+- [`awi_workflow_spec()`](https://wep69.github.io/agriWaveInfer/reference/awi_workflow_spec.md)
+  : Specify publication-oriented workflow behavior
+
+## Data contracts and design
+
+- [`awi_series()`](https://wep69.github.io/agriWaveInfer/reference/awi_series.md)
+  [`awi_panel()`](https://wep69.github.io/agriWaveInfer/reference/awi_series.md)
+  : Create scientific time-series and panel carriers
+- [`awi_design()`](https://wep69.github.io/agriWaveInfer/reference/awi_design.md)
+  : Create a formal scientific design
+- [`awi_wavelet_spec()`](https://wep69.github.io/agriWaveInfer/reference/awi_wavelet_spec.md)
+  : Create a formal wavelet specification
+- [`awi_align()`](https://wep69.github.io/agriWaveInfer/reference/awi_align.md)
+  : Align scientific series
+- [`awi_validate()`](https://wep69.github.io/agriWaveInfer/reference/awi_validate.md)
+  : Validate agriWaveInfer scientific objects
+- [`awi_capabilities()`](https://wep69.github.io/agriWaveInfer/reference/awi_capabilities.md)
+  [`awi_doctor()`](https://wep69.github.io/agriWaveInfer/reference/awi_capabilities.md)
+  : Inspect computational capabilities and preflight an analysis
+
+## Wavelet coherence
+
+- [`awi_cwt()`](https://wep69.github.io/agriWaveInfer/reference/awi_wavelet.md)
+  [`awi_xwt()`](https://wep69.github.io/agriWaveInfer/reference/awi_wavelet.md)
+  [`awi_wtc()`](https://wep69.github.io/agriWaveInfer/reference/awi_wavelet.md)
+  : Unified continuous, cross, and coherence wavelet interfaces
+- [`awi_condition_spec()`](https://wep69.github.io/agriWaveInfer/reference/awi_condition_spec.md)
+  : Numerical conditioning specification for multivariate wavelet
+  inference
+- [`awi_pwc()`](https://wep69.github.io/agriWaveInfer/reference/awi_pwc.md)
+  [`awi_partial()`](https://wep69.github.io/agriWaveInfer/reference/awi_pwc.md)
+  : Improved partial wavelet coherence with one or more controls
+- [`awi_mwc()`](https://wep69.github.io/agriWaveInfer/reference/awi_mwc.md)
+  : Multiple wavelet coherence with optional field-aware inference
+- [`awi_mwc_compare()`](https://wep69.github.io/agriWaveInfer/reference/awi_mwc_compare.md)
+  : Differential comparison of multiple wavelet coherence
+  implementations
+
+## Inference
+
+- [`awi_null_spec()`](https://wep69.github.io/agriWaveInfer/reference/awi_null_spec.md)
+  : Specify a surrogate null model and field-aware inference policy
+- [`awi_surrogate()`](https://wep69.github.io/agriWaveInfer/reference/awi_surrogate.md)
+  [`awi_phase_randomize()`](https://wep69.github.io/agriWaveInfer/reference/awi_surrogate.md)
+  [`awi_iaaft()`](https://wep69.github.io/agriWaveInfer/reference/awi_surrogate.md)
+  [`awi_block_bootstrap()`](https://wep69.github.io/agriWaveInfer/reference/awi_surrogate.md)
+  : Generate surrogate agroclimatic time series
+- [`awi_fdr()`](https://wep69.github.io/agriWaveInfer/reference/awi_fdr.md)
+  : Control false discoveries over a time-frequency p-value field
+- [`awi_cluster_test()`](https://wep69.github.io/agriWaveInfer/reference/awi_cluster_test.md)
+  : Cluster-based inference on a scale-by-time statistic field
+
+## Drivers
+
+- [`awi_driver_spec()`](https://wep69.github.io/agriWaveInfer/reference/awi_driver_spec.md)
+  : Specify a driver-attribution and parsimony policy
+- [`awi_awc()`](https://wep69.github.io/agriWaveInfer/reference/awi_driver_metrics.md)
+  [`awi_posc()`](https://wep69.github.io/agriWaveInfer/reference/awi_driver_metrics.md)
+  : Summarize coherence over an explicit time-frequency domain
+- [`awi_gain_loss()`](https://wep69.github.io/agriWaveInfer/reference/awi_gain_loss.md)
+  : Quantify incremental gain or loss in multiscale coherence summaries
+- [`awi_driver_screen()`](https://wep69.github.io/agriWaveInfer/reference/awi_driver_selection.md)
+  [`awi_coherence_elimination()`](https://wep69.github.io/agriWaveInfer/reference/awi_driver_selection.md)
+  [`awi_mwc_select()`](https://wep69.github.io/agriWaveInfer/reference/awi_driver_selection.md)
+  : Screen and select multiscale drivers with explicit parsimony rules
+
+## Phase and direction
+
+- [`awi_phase_spec()`](https://wep69.github.io/agriWaveInfer/reference/awi_phase_spec.md)
+  : Specify phase and lead-lag interpretation rules
+- [`awi_phase()`](https://wep69.github.io/agriWaveInfer/reference/awi_phase.md)
+  [`awi_phase_lag()`](https://wep69.github.io/agriWaveInfer/reference/awi_phase.md)
+  [`awi_lag_band()`](https://wep69.github.io/agriWaveInfer/reference/awi_phase.md)
+  [`awi_lead_map()`](https://wep69.github.io/agriWaveInfer/reference/awi_phase.md)
+  : Extract phase and convert it to multiscale lead-lag summaries
+- [`awi_directionality()`](https://wep69.github.io/agriWaveInfer/reference/awi_directionality.md)
+  [`awi_predictive_direction()`](https://wep69.github.io/agriWaveInfer/reference/awi_directionality.md)
+  : Summarize phase direction and predictive precedence without causal
+  labeling
+- [`awi_band_granger()`](https://wep69.github.io/agriWaveInfer/reference/awi_band_granger.md)
+  : Experimental band-limited Granger-style predictive precedence
+  diagnostic
+
+## Phenology and propagation
+
+- [`awi_phenology_spec()`](https://wep69.github.io/agriWaveInfer/reference/awi_phenology_spec.md)
+  : Specify phenology alignment rules
+- [`awi_crop_stage()`](https://wep69.github.io/agriWaveInfer/reference/awi_crop_stage.md)
+  [`awi_stage_align()`](https://wep69.github.io/agriWaveInfer/reference/awi_crop_stage.md)
+  : Create a crop-stage calendar and align a time series to it
+- [`awi_stage_coherence()`](https://wep69.github.io/agriWaveInfer/reference/awi_stage_coherence.md)
+  : Summarize wavelet coherence by phenological stage
+- [`awi_propagation_spec()`](https://wep69.github.io/agriWaveInfer/reference/awi_propagation_spec.md)
+  : Specify multiscale propagation interpretation rules
+- [`awi_drought_chain()`](https://wep69.github.io/agriWaveInfer/reference/awi_drought_chain.md)
+  : Define and harmonize an ordered drought-propagation chain
+- [`awi_propagation()`](https://wep69.github.io/agriWaveInfer/reference/awi_propagation.md)
+  [`awi_propagation_lag()`](https://wep69.github.io/agriWaveInfer/reference/awi_propagation.md)
+  : Estimate sequential multiscale propagation and descriptive
+  cumulative lag
+
+## Networks
+
+- [`awi_network_spec()`](https://wep69.github.io/agriWaveInfer/reference/awi_network_spec.md)
+  : Specify rules for time-frequency network construction
+- [`awi_network()`](https://wep69.github.io/agriWaveInfer/reference/awi_network.md)
+  [`awi_dynamic_network()`](https://wep69.github.io/agriWaveInfer/reference/awi_network.md)
+  [`awi_scale_network()`](https://wep69.github.io/agriWaveInfer/reference/awi_network.md)
+  [`awi_edge_persistence()`](https://wep69.github.io/agriWaveInfer/reference/awi_network.md)
+  [`awi_network_compare()`](https://wep69.github.io/agriWaveInfer/reference/awi_network.md)
+  : Construct and compare time-frequency wavelet-coherence networks
+
+## Spatial
+
+- [`awi_spatial_spec()`](https://wep69.github.io/agriWaveInfer/reference/awi_spatial_spec.md)
+  : Specify memory-aware spatial wavelet execution
+- [`awi_spatial_coherence()`](https://wep69.github.io/agriWaveInfer/reference/awi_spatial.md)
+  [`awi_coherence_map()`](https://wep69.github.io/agriWaveInfer/reference/awi_spatial.md)
+  [`awi_driver_map()`](https://wep69.github.io/agriWaveInfer/reference/awi_spatial.md)
+  [`awi_lag_map()`](https://wep69.github.io/agriWaveInfer/reference/awi_spatial.md)
+  : Spatial wavelet coherence, dominant-driver, and lag maps
+
+## Workflows and publication
+
+- [`awi_workflow_spec()`](https://wep69.github.io/agriWaveInfer/reference/awi_workflow_spec.md)
+  : Specify publication-oriented workflow behavior
+- [`awi_workflow()`](https://wep69.github.io/agriWaveInfer/reference/awi_workflow.md)
+  : Run an auditable multiscale analysis workflow
+- [`awi_report()`](https://wep69.github.io/agriWaveInfer/reference/awi_publication.md)
+  [`awi_reproducibility_bundle()`](https://wep69.github.io/agriWaveInfer/reference/awi_publication.md)
+  [`awi_publication_check()`](https://wep69.github.io/agriWaveInfer/reference/awi_publication.md)
+  : Publication and reproducibility utilities
+
+# Articles
+
+### Vignettes
+
+- [agriWaveInfer 0.2.0: Foundations to Conditional and Multivariate
+  Wavelet
+  Inference](https://wep69.github.io/agriWaveInfer/articles/v00-foundations-to-unified-wavelet.md):
+- [Scientific Data and Design
+  Contracts](https://wep69.github.io/agriWaveInfer/articles/v01-data-design.md):
+- [Partial Wavelet Coherence: Conditioning Without Calling It
+  Causality](https://wep69.github.io/agriWaveInfer/articles/v02-partial-wavelet-coherence.md):
+- [Multiple Wavelet Coherence and Local Numerical
+  Diagnostics](https://wep69.github.io/agriWaveInfer/articles/v03-multiple-wavelet-coherence.md):
+- [Surrogate Null Models for Agroclimatic Wavelet
+  Inference](https://wep69.github.io/agriWaveInfer/articles/v04-null-models.md):
+- [Field-Aware Inference: FDR and Cluster Tests in the Time-Frequency
+  Plane](https://wep69.github.io/agriWaveInfer/articles/v05-field-aware-inference.md):
+- [Driver attribution: AWC, PoSC and conditional
+  support](https://wep69.github.io/agriWaveInfer/articles/v06-driver-attribution.md):
+- [Parsimonious multiscale driver
+  selection](https://wep69.github.io/agriWaveInfer/articles/v07-driver-selection.md):
+- [Phase and Multiscale
+  Lead-Lag](https://wep69.github.io/agriWaveInfer/articles/v08-phase-and-lead-lag.md):
+- [Predictive Direction without Causal
+  Overstatement](https://wep69.github.io/agriWaveInfer/articles/v09-predictive-direction.md):
+- [Phenology-Aligned Multiscale
+  Inference](https://wep69.github.io/agriWaveInfer/articles/v10-phenology-alignment.md):
+- [Multiscale Drought Propagation from Climate to Crop
+  Response](https://wep69.github.io/agriWaveInfer/articles/v11-drought-propagation.md):
+- [Wavelet-Coherence Networks for Agroclimatic
+  Systems](https://wep69.github.io/agriWaveInfer/articles/v12-wavelet-coherence-networks.md):
+- [Dynamic Wavelet Networks and Edge
+  Persistence](https://wep69.github.io/agriWaveInfer/articles/v13-dynamic-network-persistence.md):
+- [Spatial Wavelet Inference for Agroclimatic
+  Systems](https://wep69.github.io/agriWaveInfer/articles/v14-spatial-inference.md):
+- [Memory-Aware Spatial
+  Scalability](https://wep69.github.io/agriWaveInfer/articles/v15-spatial-scalability.md):
+- [Reproducible multiscale
+  workflows](https://wep69.github.io/agriWaveInfer/articles/v16-reproducible-workflows.md):
+- [Scientific validation and publication
+  readiness](https://wep69.github.io/agriWaveInfer/articles/v17-publication-and-validation.md):
