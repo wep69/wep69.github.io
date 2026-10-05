@@ -17,3 +17,11 @@ suitability_score(x)
 ## Value
 
 Continuous score object.
+
+## Examples
+
+``` r
+s <- suit_aggregate(cbind(rain = c(0.9, 0.6, 0.3, 0.1), temp = c(1, 0.7, 0.8, 0.5)))
+suitability_score(s)
+#> [1] 0.9 0.6 0.3 0.1
+```

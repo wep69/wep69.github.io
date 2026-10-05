@@ -30,3 +30,14 @@ suit_weights(criteria, weights = NULL, normalize = TRUE)
 ## Value
 
 A named numeric weight vector.
+
+## Examples
+
+``` r
+suit_weights(c("rain", "temp", "soil"))
+#>      rain      temp      soil 
+#> 0.3333333 0.3333333 0.3333333 
+suit_weights(c("rain", "temp", "soil"), weights = c(rain = 2, temp = 1, soil = 1))
+#> rain temp soil 
+#> 0.50 0.25 0.25 
+```

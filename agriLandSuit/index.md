@@ -1,11 +1,18 @@
-# agriLandSuit 1.0.0
+# agriLandSuit 1.1.0
 
 **Agricultural Land Suitability and Edaphoclimatic Zoning**
 
 `agriLandSuit` is an R-first framework for transparent, spatially
 explicit and uncertainty-aware agricultural land suitability. The 1.0.0
 release consolidates the complete workflow developed from versions 0.1.0
-through 0.9.0 while preserving a single public API.
+through 0.9.0 while preserving a single public API. The 1.1.0 release
+adds probabilistic agroclimate computed from monthly series, together
+with interannual ensemble summaries, point (station) workflows,
+threshold and method sensitivity, climate-change factors and scenario
+ensembles, climate-mode conditioning, external validation, planting
+windows, publication graphics and helpers to download open data. The 82
+public functions of 1.0.0 are preserved; 75 new functions bring the
+package to 157 exports.
 
 ## Scientific workflow
 
@@ -200,7 +207,7 @@ workflow integrations.
 ## Optional Python backends
 
 Python is accessed only through `reticulate` and is never installed
-automatically. Active optional computational paths at 1.0.0 are:
+automatically. Active optional computational paths at 1.1.0 are:
 
 - NumPy + scikit-fuzzy for fuzzy numeric parity;
 - PyMCDM for selected AHP/TOPSIS matrix workflows;
@@ -209,6 +216,54 @@ automatically. Active optional computational paths at 1.0.0 are:
 `xarray`, `rioxarray`, `rasterio`, `geopandas`, `shapely`, `pyproj`,
 `dask`, PyMC, and ArviZ remain interoperability or advanced-extension
 candidates rather than requirements of the core API.
+
+## Agroclimate, probability and validation (new in 1.1.0)
+
+[`agri_year()`](https://wep69.github.io/agriLandSuit/reference/agri_year.md),
+[`fill_monthly_gaps()`](https://wep69.github.io/agriLandSuit/reference/fill_monthly_gaps.md),
+[`daylength()`](https://wep69.github.io/agriLandSuit/reference/daylength.md),
+[`extraterrestrial_radiation()`](https://wep69.github.io/agriLandSuit/reference/daylength.md),
+[`pet_monthly()`](https://wep69.github.io/agriLandSuit/reference/pet_monthly.md),
+[`water_balance_monthly()`](https://wep69.github.io/agriLandSuit/reference/water_balance_monthly.md),
+[`growing_period()`](https://wep69.github.io/agriLandSuit/reference/growing_period.md)
+and
+[`climate_criteria()`](https://wep69.github.io/agriLandSuit/reference/climate_criteria.md)
+compute agroclimatic criteria from station or gridded monthly series
+(Thornthwaite, Hargreaves and FAO-56 Penman-Monteith
+evapotranspiration).
+[`season_onset()`](https://wep69.github.io/agriLandSuit/reference/season_onset.md),
+[`dry_spell_index()`](https://wep69.github.io/agriLandSuit/reference/dry_spell_index.md)
+and
+[`heat_days()`](https://wep69.github.io/agriLandSuit/reference/heat_days.md)
+describe the growing season;
+[`land_points()`](https://wep69.github.io/agriLandSuit/reference/land_points.md)
+and
+[`land_point_values()`](https://wep69.github.io/agriLandSuit/reference/land_point_values.md)
+extract station values from rasters;
+[`ensemble_from_years()`](https://wep69.github.io/agriLandSuit/reference/ensemble_from_years.md),
+[`suit_risk()`](https://wep69.github.io/agriLandSuit/reference/suit_risk.md)
+and
+[`suit_calendar()`](https://wep69.github.io/agriLandSuit/reference/suit_calendar.md)
+summarise interannual probability;
+[`threshold_sensitivity()`](https://wep69.github.io/agriLandSuit/reference/threshold_sensitivity.md)
+and
+[`method_sensitivity()`](https://wep69.github.io/agriLandSuit/reference/method_sensitivity.md)
+probe decisions;
+[`planting_window()`](https://wep69.github.io/agriLandSuit/reference/planting_window.md)
+derives calendars;
+[`apply_change_factors()`](https://wep69.github.io/agriLandSuit/reference/apply_change_factors.md)
+and
+[`scenario_ensemble()`](https://wep69.github.io/agriLandSuit/reference/scenario_ensemble.md)
+organise climate-change runs;
+[`conditional_suitability()`](https://wep69.github.io/agriLandSuit/reference/conditional_suitability.md)
+conditions suitability on climate modes;
+[`validate_suitability()`](https://wep69.github.io/agriLandSuit/reference/validate_suitability.md),
+[`class_enrichment()`](https://wep69.github.io/agriLandSuit/reference/class_enrichment.md)
+and
+[`compare_suitability()`](https://wep69.github.io/agriLandSuit/reference/compare_suitability.md)
+compare against an external reference with spatial block bootstrap; and
+optional `ggplot2` helpers under `plot_*()` prepare publication
+graphics.
 
 ## Vignettes
 
@@ -224,13 +279,14 @@ Read approximately in this order:
 8.  `07-uncertainty-ensembles.Rmd`
 9.  `08-multicrop-decision.Rmd`
 10. `09-reproducibility-interoperability.Rmd`
+11. `10-probabilistic-agroclimate.Rmd`
 
 ## Validation status
 
-The 1.0.0 assembly is statically and numerically audited in this
-environment. R itself is not installed here, so executable `testthat`,
-vignette rendering, `R CMD build`, and `R CMD check --as-cran` must be
-completed locally. The creator/maintainer metadata now include the
-supplied address `walterufpb@yahoo.com.br`; formal release certification
-therefore depends only on the executable local validation steps and any
-issues they reveal.
+The 1.1.0 assembly was validated in R 4.6.0 on Windows 11:
+`R CMD check --no-manual` passed with no ERROR, WARNING or NOTE; 338
+testthat expectations passed (4 skipped because the optional Python
+backends are absent); all examples of the 157 exported functions run in
+the check; and the station and gridded analyses of the probabilistic
+suitability case study were reproduced with the new functions, with the
+remaining differences explained in the build report.

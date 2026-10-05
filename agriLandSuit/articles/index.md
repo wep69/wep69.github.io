@@ -22,3 +22,5 @@
   stability](https://wep69.github.io/agriLandSuit/articles/v08-multicrop-decision.md):
 - [Reproducibility and
   interoperability](https://wep69.github.io/agriLandSuit/articles/v09-reproducibility-interoperability.md):
+- [Probabilistic Suitability from Monthly Climate
+  Series](https://wep69.github.io/agriLandSuit/articles/v10-probabilistic-agroclimate.md):

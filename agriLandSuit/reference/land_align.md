@@ -41,3 +41,17 @@ land_align(
 ## Value
 
 An aligned \`agri_land_data\` object.
+
+## Examples
+
+``` r
+r <- terra::rast(ncols = 4, nrows = 3, xmin = 30, xmax = 34, ymin = -20, ymax = -17, crs = "EPSG:4326")
+lay <- function(v, n) { x <- r; terra::values(x) <- v; names(x) <- n; x }
+fine <- terra::rast(ncols = 8, nrows = 6, xmin = 30, xmax = 34, ymin = -20, ymax = -17, crs = "EPSG:4326")
+terra::values(fine) <- runif(48, 5, 7); names(fine) <- "pH"
+land <- land_data(climate = lay(seq(400, 1500, length.out = 12), "Pseason"), soil = fine, validate = FALSE)
+land_validate(land)$ok
+#> [1] FALSE
+land_validate(land_align(land))$ok
+#> [1] TRUE
+```

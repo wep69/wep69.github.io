@@ -80,3 +80,20 @@ land_constraint(
 ## Value
 
 An \`agri_land_constraint\` object.
+
+## Examples
+
+``` r
+land_constraint("steep", "terrain.slope", "exclude", "gt", threshold = 20, unit = "degree",
+                description = "Slopes above 20 degrees excluded")
+#> <agri_land_constraint> steep 
+#>  source  : terrain.slope 
+#>  type    : exclude 
+#>  operator: gt 
+land_constraint("acid", "soil.pH", "cap", "lt", threshold = 5.5, cap = 0.5, unit = "pH")
+#> <agri_land_constraint> acid 
+#>  source  : soil.pH 
+#>  type    : cap 
+#>  operator: lt 
+#>  cap     : 0.5 
+```

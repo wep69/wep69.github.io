@@ -32,3 +32,17 @@ crop_winner_probability(
 ## Value
 
 An \`agri_crop_winner_probability\` object.
+
+## Examples
+
+``` r
+set.seed(2)
+mk <- function(shift) { s <- matrix(pmin(1, pmax(0, runif(12, 0.2, 0.9) + shift)), nrow = 3)
+  ensemble_from_scores(s, member_ids = paste0("m", 1:4)) }
+x <- list(maize = mk(0), sorghum = mk(0.05), cassava = mk(-0.05))
+crop_winner_probability(x)$probability
+#>      P_best_maize P_best_sorghum P_best_cassava
+#> [1,]          0.0           0.75           0.25
+#> [2,]          0.5           0.50           0.00
+#> [3,]          0.5           0.00           0.50
+```

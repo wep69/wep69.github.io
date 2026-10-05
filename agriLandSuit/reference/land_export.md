@@ -40,3 +40,16 @@ land_export(
 ## Value
 
 Normalized output path invisibly.
+
+## Examples
+
+``` r
+r <- terra::rast(ncols = 4, nrows = 3, xmin = 30, xmax = 34, ymin = -20, ymax = -17, crs = "EPSG:4326")
+lay <- function(v, n) { x <- r; terra::values(x) <- v; names(x) <- n; x }
+x <- land_data(climate = lay(1:12, "Pseason"), units = c(climate.Pseason = "mm"))
+f <- tempfile(fileext = ".rds")
+land_export(x, f, format = "rds", manifest = FALSE)
+y <- land_import(f)
+all.equal(terra::values(y$layers$climate), terra::values(x$layers$climate))
+#> [1] TRUE
+```

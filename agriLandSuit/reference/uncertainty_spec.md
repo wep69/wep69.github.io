@@ -32,3 +32,14 @@ uncertainty_spec(x, score_concentration = Inf, weight_log_sd = 0)
 ## Value
 
 An \`agri_uncertainty_spec\` object.
+
+## Examples
+
+``` r
+z <- matrix(c(.35, .65, .55, .75, .45, .85), nrow = 3, byrow = TRUE, dimnames = list(NULL, c("climate", "soil")))
+u <- uncertainty_spec(z, score_concentration = 100, weight_log_sd = 0.05)
+u
+#> <agri_uncertainty_spec> 2 criteria
+#>  score distribution : beta
+#>  weight distribution: lognormal
+```

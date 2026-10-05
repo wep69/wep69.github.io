@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">agriLandSuit</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,7 +40,12 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">limiting_factor</span><span class="op">(</span><span class="va">x</span>, na_policy <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"propagate"</span>, <span class="st">"available"</span><span class="op">)</span>, tolerance <span class="op">=</span> <span class="fl">1e-12</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">limiting_factor</span><span class="op">(</span></span>
+<span>  <span class="va">x</span>,</span>
+<span>  na_policy <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"propagate"</span>, <span class="st">"available"</span><span class="op">)</span>,</span>
+<span>  tolerance <span class="op">=</span> <span class="fl">1e-12</span>,</span>
+<span>  none_threshold <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -58,6 +63,12 @@
 <dt id="arg-tolerance">tolerance<a class="anchor" aria-label="anchor" href="#arg-tolerance"></a></dt>
 <dd><p>Non-negative tolerance used to count ties around the minimum.</p></dd>
 
+
+<dt id="arg-none-threshold">none_threshold<a class="anchor" aria-label="anchor" href="#arg-none-threshold"></a></dt>
+<dd><p>Optional score in (0, 1]. Units whose minimum score is
+at or above this value have no limiting criterion and receive index 0,
+labelled `none` in the key. `NULL` (default) keeps the 1.0.0 behaviour.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -65,6 +76,21 @@
   criterion index, tie count, and criterion key.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.4</span>, <span class="fl">1</span>, <span class="fl">0.9</span>, <span class="fl">0.6</span>, <span class="fl">1</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span>, dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="cn">NULL</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"rain"</span>, <span class="st">"temperature"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">limiting_factor</span><span class="op">(</span><span class="va">z</span><span class="op">)</span><span class="op">$</span><span class="va">index</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2 1 1</span>
+<span class="r-in"><span><span class="va">lf</span> <span class="op">&lt;-</span> <span class="fu">limiting_factor</span><span class="op">(</span><span class="va">z</span>, none_threshold <span class="op">=</span> <span class="fl">0.999</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">lf</span><span class="op">$</span><span class="va">index</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2 1 0</span>
+<span class="r-in"><span><span class="va">lf</span><span class="op">$</span><span class="va">key</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   index   criterion</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     0        none</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     1        rain</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     2 temperature</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

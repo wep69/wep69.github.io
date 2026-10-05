@@ -1,5 +1,162 @@
 # Changelog
 
+## agriLandSuit 1.1.0
+
+### Scope
+
+This release adds the functions needed to reproduce, inside the package,
+a complete national probabilistic suitability study built from station
+and gridded monthly climate (the Mozambique case study, 1991/92 to
+2019/20). The 82 public functions of 1.0.0 are preserved; 75 functions
+are added (157 exports). Agroclimatic criteria are now computed by
+explicit, documented functions; nothing is imputed, converted or
+resampled unless the user calls the function that does it.
+
+### Changes to existing functions (backward compatible)
+
+- [`crop_requirement()`](https://wep69.github.io/agriLandSuit/reference/crop_requirement.md)
+  gains `strict_unit`. Units missing from
+  [`unit_registry()`](https://wep69.github.io/agriLandSuit/reference/unit_registry.md)
+  now raise a warning that suggests the canonical label (for example
+  `months` to `day`, `mm/yr` to `mm/year`), or an error when
+  `strict_unit = TRUE` or `options(agriLandSuit.strict_units = TRUE)`.
+- [`land_provenance()`](https://wep69.github.io/agriLandSuit/reference/land_provenance.md),
+  [`land_manifest()`](https://wep69.github.io/agriLandSuit/reference/land_manifest.md)
+  gain `root`; input paths inside the project root are stored relative,
+  so manifests survive moving or sharing the project folder.
+  [`reproducibility_check()`](https://wep69.github.io/agriLandSuit/reference/reproducibility_check.md)
+  gains `root` and resolves relative paths against it, the manifest
+  folder or the working directory.
+- [`limiting_factor()`](https://wep69.github.io/agriLandSuit/reference/limiting_factor.md)
+  gains `none_threshold`; units whose minimum score reaches it get index
+  0 (`none`).
+- [`uncertainty_decompose()`](https://wep69.github.io/agriLandSuit/reference/uncertainty_decompose.md):
+  `design` may be omitted when the ensemble carries one; new
+  `method = "anova"` returns sequential (type I) shares that sum to one
+  with a residual term. The default (`marginal`) is unchanged.
+- New accessors
+  [`domain_scores()`](https://wep69.github.io/agriLandSuit/reference/domain_scores.md)
+  and
+  [`domain_names()`](https://wep69.github.io/agriLandSuit/reference/domain_scores.md)
+  for `agri_domain_suitability` objects.
+
+### New functions
+
+- Agroclimate:
+  [`agri_year()`](https://wep69.github.io/agriLandSuit/reference/agri_year.md),
+  [`fill_monthly_gaps()`](https://wep69.github.io/agriLandSuit/reference/fill_monthly_gaps.md),
+  [`daylength()`](https://wep69.github.io/agriLandSuit/reference/daylength.md),
+  [`extraterrestrial_radiation()`](https://wep69.github.io/agriLandSuit/reference/daylength.md),
+  [`pet_monthly()`](https://wep69.github.io/agriLandSuit/reference/pet_monthly.md)
+  (Thornthwaite, Hargreaves, FAO-56 Penman-Monteith),
+  [`water_balance_monthly()`](https://wep69.github.io/agriLandSuit/reference/water_balance_monthly.md),
+  [`growing_period()`](https://wep69.github.io/agriLandSuit/reference/growing_period.md),
+  [`climate_criteria()`](https://wep69.github.io/agriLandSuit/reference/climate_criteria.md)
+  (matrix or `SpatRaster` input),
+  [`criteria_climatology()`](https://wep69.github.io/agriLandSuit/reference/criteria_climatology.md),
+  [`season_onset()`](https://wep69.github.io/agriLandSuit/reference/season_onset.md)
+  (agronomic and Liebmann),
+  [`dry_spell_index()`](https://wep69.github.io/agriLandSuit/reference/dry_spell_index.md),
+  [`heat_days()`](https://wep69.github.io/agriLandSuit/reference/heat_days.md).
+- Profiles:
+  [`profile_scores()`](https://wep69.github.io/agriLandSuit/reference/profile_scores.md),
+  [`crop_profile_update()`](https://wep69.github.io/agriLandSuit/reference/crop_profile_update.md),
+  [`crop_profile_subset()`](https://wep69.github.io/agriLandSuit/reference/crop_profile_update.md),
+  [`crop_profile_table()`](https://wep69.github.io/agriLandSuit/reference/crop_profile_table.md),
+  [`crop_profile_library()`](https://wep69.github.io/agriLandSuit/reference/crop_profile_library.md)
+  with six illustrative rainfed profiles in
+  `inst/extdata/crop_profile_library.csv`,
+  [`threshold_sensitivity()`](https://wep69.github.io/agriLandSuit/reference/threshold_sensitivity.md),
+  [`method_sensitivity()`](https://wep69.github.io/agriLandSuit/reference/method_sensitivity.md).
+- Points:
+  [`land_points()`](https://wep69.github.io/agriLandSuit/reference/land_points.md),
+  [`land_point_values()`](https://wep69.github.io/agriLandSuit/reference/land_point_values.md).
+- Probability:
+  [`score_to_class()`](https://wep69.github.io/agriLandSuit/reference/score_to_class.md)
+  (explicit left- or right-closed classes),
+  [`ensemble_from_scores()`](https://wep69.github.io/agriLandSuit/reference/ensemble_from_scores.md),
+  [`ensemble_from_years()`](https://wep69.github.io/agriLandSuit/reference/ensemble_from_years.md),
+  [`ensemble_design()`](https://wep69.github.io/agriLandSuit/reference/ensemble_design.md),
+  [`ensemble_set_design()`](https://wep69.github.io/agriLandSuit/reference/ensemble_set_design.md),
+  [`ensemble_get_design()`](https://wep69.github.io/agriLandSuit/reference/ensemble_set_design.md),
+  [`ensemble_combine()`](https://wep69.github.io/agriLandSuit/reference/ensemble_combine.md),
+  [`suit_risk()`](https://wep69.github.io/agriLandSuit/reference/suit_risk.md),
+  [`suit_calendar()`](https://wep69.github.io/agriLandSuit/reference/suit_calendar.md).
+- Spatial summaries:
+  [`limiting_map()`](https://wep69.github.io/agriLandSuit/reference/limiting_map.md),
+  [`suit_area_summary()`](https://wep69.github.io/agriLandSuit/reference/suit_area_summary.md).
+- Soil, terrain and constraints:
+  [`soil_depth_weighted()`](https://wep69.github.io/agriLandSuit/reference/soil_depth_weighted.md),
+  [`soil_awc_ptf()`](https://wep69.github.io/agriLandSuit/reference/soil_awc_ptf.md)
+  (Saxton and Rawls 2006),
+  [`slope_from_dem()`](https://wep69.github.io/agriLandSuit/reference/slope_from_dem.md),
+  [`constraint_from_polygons()`](https://wep69.github.io/agriLandSuit/reference/constraint_from_polygons.md)
+  (WDPA 2026 schema).
+- Climate change:
+  [`fill_coastal()`](https://wep69.github.io/agriLandSuit/reference/fill_coastal.md),
+  [`change_factors()`](https://wep69.github.io/agriLandSuit/reference/change_factors.md),
+  [`apply_change_factors()`](https://wep69.github.io/agriLandSuit/reference/apply_change_factors.md),
+  [`scenario_from_pseudoyears()`](https://wep69.github.io/agriLandSuit/reference/scenario_from_pseudoyears.md),
+  [`scenario_ensemble()`](https://wep69.github.io/agriLandSuit/reference/scenario_ensemble.md),
+  [`scenario_risk_summary()`](https://wep69.github.io/agriLandSuit/reference/scenario_risk_summary.md),
+  [`gwl_period()`](https://wep69.github.io/agriLandSuit/reference/gwl_period.md).
+- Climate modes:
+  [`seasonal_index()`](https://wep69.github.io/agriLandSuit/reference/seasonal_index.md),
+  [`tercile_groups()`](https://wep69.github.io/agriLandSuit/reference/tercile_groups.md),
+  [`enso_phase()`](https://wep69.github.io/agriLandSuit/reference/tercile_groups.md),
+  [`conditional_suitability()`](https://wep69.github.io/agriLandSuit/reference/conditional_suitability.md)
+  (permutation test, regression with controls, FDR).
+- Validation:
+  [`validate_suitability()`](https://wep69.github.io/agriLandSuit/reference/validate_suitability.md)
+  (Spearman with spatial block bootstrap, enrichment),
+  [`class_enrichment()`](https://wep69.github.io/agriLandSuit/reference/class_enrichment.md),
+  [`compare_suitability()`](https://wep69.github.io/agriLandSuit/reference/compare_suitability.md)
+  (correlations, agreement, kappa, transitions).
+- Calendar:
+  [`planting_window()`](https://wep69.github.io/agriLandSuit/reference/planting_window.md).
+- Graphics (optional `ggplot2`):
+  [`agri_palettes()`](https://wep69.github.io/agriLandSuit/reference/agri_palettes.md),
+  [`theme_agri()`](https://wep69.github.io/agriLandSuit/reference/agri_palettes.md),
+  [`save_publication_figure()`](https://wep69.github.io/agriLandSuit/reference/save_publication_figure.md),
+  [`plot_membership()`](https://wep69.github.io/agriLandSuit/reference/plot_membership.md),
+  [`plot_suitability_map()`](https://wep69.github.io/agriLandSuit/reference/plot_suitability_map.md),
+  [`plot_class_probability()`](https://wep69.github.io/agriLandSuit/reference/plot_class_probability.md),
+  [`plot_suitability_calendar()`](https://wep69.github.io/agriLandSuit/reference/plot_suitability_calendar.md),
+  [`plot_limiting()`](https://wep69.github.io/agriLandSuit/reference/plot_limiting.md),
+  [`plot_uncertainty()`](https://wep69.github.io/agriLandSuit/reference/plot_uncertainty.md),
+  [`plot_transitions()`](https://wep69.github.io/agriLandSuit/reference/plot_transitions.md).
+- Open data (internet required, never called by package code):
+  [`get_chirps()`](https://wep69.github.io/agriLandSuit/reference/get_open_data.md),
+  [`get_terraclimate()`](https://wep69.github.io/agriLandSuit/reference/get_open_data.md),
+  [`get_soilgrids()`](https://wep69.github.io/agriLandSuit/reference/get_open_data.md),
+  [`get_wdpa()`](https://wep69.github.io/agriLandSuit/reference/get_open_data.md),
+  [`get_mapspam()`](https://wep69.github.io/agriLandSuit/reference/get_open_data.md),
+  [`get_worldclim_cmip6()`](https://wep69.github.io/agriLandSuit/reference/get_open_data.md),
+  [`get_gadm()`](https://wep69.github.io/agriLandSuit/reference/get_open_data.md),
+  [`get_elevation()`](https://wep69.github.io/agriLandSuit/reference/get_open_data.md),
+  [`get_gwl_table()`](https://wep69.github.io/agriLandSuit/reference/get_open_data.md),
+  [`download_log()`](https://wep69.github.io/agriLandSuit/reference/download_log.md).
+- Workflow:
+  [`land_fingerprint_files()`](https://wep69.github.io/agriLandSuit/reference/land_fingerprint_files.md),
+  [`run_isolated()`](https://wep69.github.io/agriLandSuit/reference/run_isolated.md).
+
+### Notes
+
+- Documentation: every exported function (157) now has a runnable
+  Examples section built on small synthetic data; examples needing
+  internet are wrapped in `\dontrun{}`.
+- Class boundaries:
+  [`suit_classify()`](https://wep69.github.io/agriLandSuit/reference/suit_classify.md)
+  and
+  [`class_probability()`](https://wep69.github.io/agriLandSuit/reference/class_probability.md)
+  keep right-closed intervals;
+  [`score_to_class()`](https://wep69.github.io/agriLandSuit/reference/score_to_class.md),
+  [`suit_risk()`](https://wep69.github.io/agriLandSuit/reference/suit_risk.md),
+  [`suit_area_summary()`](https://wep69.github.io/agriLandSuit/reference/suit_area_summary.md)
+  and the validation functions default to left-closed intervals (a score
+  of exactly 0.5 is S2). Both conventions are documented and selectable.
+- New optional dependencies: `ggplot2`, `ragg`, `sf`, `geodata`.
+
 ## agriLandSuit 1.0.0
 
 ### Consolidated Scientific Release

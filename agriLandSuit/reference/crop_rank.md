@@ -32,3 +32,18 @@ crop_rank(
 
 An \`agri_crop_rank\` object with rank 1 representing highest
 suitability.
+
+## Examples
+
+``` r
+z1 <- cbind(rain = c(.8, .6, .7, .4), temp = c(.9, .8, .9, .6))
+z2 <- cbind(rain = c(.7, .65, .7, .5), temp = c(.8, .9, .9, .7))
+z3 <- cbind(rain = c(.6, .55, .75, .5), temp = c(1, .9, .8, .8))
+cmp <- compare_crops(list(maize = suit_aggregate(z1), bean = suit_aggregate(z2), sorghum = suit_aggregate(z3)))
+crop_rank(cmp)$rank
+#>      maize bean sorghum
+#> [1,]   1.0  2.0     3.0
+#> [2,]   2.0  1.0     3.0
+#> [3,]   2.5  2.5     1.0
+#> [4,]   3.0  1.5     1.5
+```

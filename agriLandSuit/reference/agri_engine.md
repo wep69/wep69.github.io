@@ -21,3 +21,15 @@ agri_engine(engine = c("r", "python", "auto"), python_groups = "spatial")
 ## Value
 
 The resolved engine as a character scalar.
+
+## Examples
+
+``` r
+agri_engine("r")
+#> [1] "r"
+# \donttest{
+# "auto" falls back to R when the optional Python modules are absent
+agri_engine("auto", python_groups = "fuzzy")
+#> [1] "r"
+# }
+```

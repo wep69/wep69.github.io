@@ -12,7 +12,8 @@ articles:
   v07-uncertainty-ensembles: v07-uncertainty-ensembles.html
   v08-multicrop-decision: v08-multicrop-decision.html
   v09-reproducibility-interoperability: v09-reproducibility-interoperability.html
-last_built: 2026-09-01T00:57Z
+  v10-probabilistic-agroclimate: v10-probabilistic-agroclimate.html
+last_built: 2026-10-05T03:39Z
 urls:
   reference: https://wep69.github.io/agriLandSuit/reference
   article: https://wep69.github.io/agriLandSuit/articles

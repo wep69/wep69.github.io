@@ -247,11 +247,11 @@ fp <- land_fingerprint(result_a)
 prov <- land_provenance(result_a, parameters = list(method = "limiting"))
 manifest <- land_manifest(result_a, parameters = list(method = "limiting"))
 fp
-#> <agri_fingerprint> 6d6fdf3ef4f53e59dc46014823483c5287303ffd29843df422d55606d4fba24c
+#> <agri_fingerprint> 91cbc88c47d6c715573106679d6e5c46b403b9e7a8fa409206722863e0db6b5a
 manifest
 #> <agri_run_manifest>
 #>  schema: agriLandSuit-run-manifest/1 
-#>  fingerprint: 6d6fdf3ef4f53e59dc46014823483c5287303ffd29843df422d55606d4fba24c
+#>  fingerprint: 91cbc88c47d6c715573106679d6e5c46b403b9e7a8fa409206722863e0db6b5a
 ```
 
 Use

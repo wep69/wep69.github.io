@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">agriLandSuit</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,7 +40,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">reproducibility_check</span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, manifest <span class="op">=</span> <span class="cn">NULL</span>, inputs <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">reproducibility_check</span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, manifest <span class="op">=</span> <span class="cn">NULL</span>, inputs <span class="op">=</span> <span class="cn">NULL</span>, root <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -59,12 +59,40 @@
 <dd><p>Optional current input files. If omitted, paths recorded in the
 manifest are rechecked when available.</p></dd>
 
+
+<dt id="arg-root">root<a class="anchor" aria-label="anchor" href="#arg-root"></a></dt>
+<dd><p>Optional project root used to resolve relative input paths stored
+in the manifest (see `land_manifest(root = )`). When `NULL` and the manifest
+stores relative paths, they are resolved against the folder of the manifest
+file, then against the working directory.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>An `agri_reproducibility` object containing checks and overall status.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"agri_proj"</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">d</span>, <span class="st">"data"</span><span class="op">)</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span>, showWarnings <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">d</span>, <span class="st">"data"</span>, <span class="st">"inputs.csv"</span><span class="op">)</span>; <span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>, <span class="va">f</span>, row.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="land_manifest.html">land_manifest</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, inputs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>inputs <span class="op">=</span> <span class="va">f</span><span class="op">)</span>, root <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">reproducibility_check</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="va">m</span>, root <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;agri_reproducibility&gt; PASS </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               check status</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            manifest   pass</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  object_fingerprint   pass</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        input:inputs   pass</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     package_version   pass</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               terra   pass</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                                                               detail</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                                  Schema: agriLandSuit-run-manifest/1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  current=194297f40fdd4a2ac1b5ec4da3e8710b0fcfcc724c19d0cc4a8cb189baa2667a reference=194297f40fdd4a2ac1b5ec4da3e8710b0fcfcc724c19d0cc4a8cb189baa2667a</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                               C:/Users/wep69/AppData/Local/Temp/Rtmpqq5Fu6/agri_proj/data/inputs.csv</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                                        current=1.1.0 reference=1.1.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                                                               1.9.50</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

@@ -17,7 +17,8 @@ crop_requirement(
   source = NULL,
   source_id = NULL,
   evidence_level = NULL,
-  notes = NULL
+  notes = NULL,
+  strict_unit = getOption("agriLandSuit.strict_units", FALSE)
 )
 ```
 
@@ -76,6 +77,28 @@ crop_requirement(
 
   Optional notes.
 
+- strict_unit:
+
+  Logical. When \`TRUE\`, a unit that is not in \`unit_registry()\` is
+  an error; when \`FALSE\` (default) it is accepted with a warning that
+  suggests the canonical label. The default can be set with
+  \`options(agriLandSuit.strict_units = TRUE)\`.
+
 ## Value
 
 \`agri_crop_requirement\`.
+
+## Examples
+
+``` r
+crop_requirement("Pseason", "climate", "mm", "range", limits = c(400, 600, 1200, 1800),
+                 source = "example", source_id = "ex-rain")
+#> <agri_crop_requirement> Pseason 
+#>  domain   : climate 
+#>  response : range 
+#>  unit     : mm 
+#>  limits   : 400, 600, 1200, 1800 
+# unregistered units warn with a suggestion, or fail when strict
+try(crop_requirement("LGP", "water", "months", "increasing", limits = c(3, 5), strict_unit = TRUE))
+#> Error : Unit `months` of criterion `LGP` is not in unit_registry(); did you mean `day`? Monthly counts used as growing-period length should be converted to days.
+```

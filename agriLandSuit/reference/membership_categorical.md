@@ -26,3 +26,11 @@ membership_categorical(x, mapping, default = NA_real_)
 ## Value
 
 Numeric vector or SpatRaster with membership in \[0, 1\].
+
+## Examples
+
+``` r
+membership_categorical(c("loam", "sand", "clay", "rock"),
+                       mapping = c(loam = 1, clay = 0.7, sand = 0.4), default = 0)
+#> [1] 1.0 0.4 0.7 0.0
+```

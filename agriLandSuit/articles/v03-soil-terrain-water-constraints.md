@@ -9,7 +9,7 @@ library(terra)
 
     ## Warning: package 'terra' was built under R version 4.6.1
 
-    ## terra 1.9.46
+    ## terra 1.9.50
 
 ## Purpose
 
@@ -47,6 +47,9 @@ land <- land_data(
 
 r_depth <- crop_requirement("depth_cm","soil","cm","increasing",c(30,80),source="synthetic",source_id="demo")
 r_slope <- crop_requirement("slope_pct","terrain","percent","decreasing",c(5,30),source="synthetic",source_id="demo")
+#> Warning: Unit `percent` of criterion `slope_pct` is not in unit_registry(); did
+#> you mean `%`? Monthly counts used as growing-period length should be converted
+#> to days.
 r_water <- crop_requirement("reliability","water","dimensionless","increasing",c(.4,.8),source="synthetic",source_id="demo")
 
 crop <- crop_profile("demo_crop","Demo species",requirements=list(r_depth,r_slope,r_water))

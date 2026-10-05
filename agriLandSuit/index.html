@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>agriLandSuit 1.0.0 • agriLandSuit</title>
+<title>agriLandSuit 1.1.0 • agriLandSuit</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="agriLandSuit 1.0.0">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="agriLandSuit 1.1.0">
 <meta name="description" content="Agricultural Land Suitability and Edaphoclimatic Zoning - Consolidated Scientific Release">
 <meta property="og:description" content="Agricultural Land Suitability and Edaphoclimatic Zoning - Consolidated Scientific Release">
 <link rel='\"stylesheet\"' href='\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css\"'>
@@ -23,7 +23,7 @@
 
     <a class="navbar-brand me-2" href="index.html">agriLandSuit</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,10 +49,10 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="agrilandsuit-100">agriLandSuit 1.0.0<a class="anchor" aria-label="anchor" href="#agrilandsuit-100"></a>
+<div class="page-header"><h1 id="agrilandsuit-110">agriLandSuit 1.1.0<a class="anchor" aria-label="anchor" href="#agrilandsuit-110"></a>
 </h1></div>
 <p><strong>Agricultural Land Suitability and Edaphoclimatic Zoning</strong></p>
-<p><code>agriLandSuit</code> is an R-first framework for transparent, spatially explicit and uncertainty-aware agricultural land suitability. The 1.0.0 release consolidates the complete workflow developed from versions 0.1.0 through 0.9.0 while preserving a single public API.</p>
+<p><code>agriLandSuit</code> is an R-first framework for transparent, spatially explicit and uncertainty-aware agricultural land suitability. The 1.0.0 release consolidates the complete workflow developed from versions 0.1.0 through 0.9.0 while preserving a single public API. The 1.1.0 release adds probabilistic agroclimate computed from monthly series, together with interannual ensemble summaries, point (station) workflows, threshold and method sensitivity, climate-change factors and scenario ensembles, climate-mode conditioning, external validation, planting windows, publication graphics and helpers to download open data. The 82 public functions of 1.0.0 are preserved; 75 new functions bring the package to 157 exports.</p>
 <div class="section level2">
 <h2 id="scientific-workflow">Scientific workflow<a class="anchor" aria-label="anchor" href="#scientific-workflow"></a>
 </h2>
@@ -210,13 +210,18 @@ aligned uncertainty ensembles
 <div class="section level2">
 <h2 id="optional-python-backends">Optional Python backends<a class="anchor" aria-label="anchor" href="#optional-python-backends"></a>
 </h2>
-<p>Python is accessed only through <code>reticulate</code> and is never installed automatically. Active optional computational paths at 1.0.0 are:</p>
+<p>Python is accessed only through <code>reticulate</code> and is never installed automatically. Active optional computational paths at 1.1.0 are:</p>
 <ul>
 <li>NumPy + scikit-fuzzy for fuzzy numeric parity;</li>
 <li>PyMCDM for selected AHP/TOPSIS matrix workflows;</li>
 <li>NumPy <code>Generator</code> for optional numeric Monte Carlo sampling.</li>
 </ul>
 <p><code>xarray</code>, <code>rioxarray</code>, <code>rasterio</code>, <code>geopandas</code>, <code>shapely</code>, <code>pyproj</code>, <code>dask</code>, PyMC, and ArviZ remain interoperability or advanced-extension candidates rather than requirements of the core API.</p>
+</div>
+<div class="section level2">
+<h2 id="agroclimate-probability-and-validation-new-in-110">Agroclimate, probability and validation (new in 1.1.0)<a class="anchor" aria-label="anchor" href="#agroclimate-probability-and-validation-new-in-110"></a>
+</h2>
+<p><code><a href="reference/agri_year.html">agri_year()</a></code>, <code><a href="reference/fill_monthly_gaps.html">fill_monthly_gaps()</a></code>, <code><a href="reference/daylength.html">daylength()</a></code>, <code><a href="reference/daylength.html">extraterrestrial_radiation()</a></code>, <code><a href="reference/pet_monthly.html">pet_monthly()</a></code>, <code><a href="reference/water_balance_monthly.html">water_balance_monthly()</a></code>, <code><a href="reference/growing_period.html">growing_period()</a></code> and <code><a href="reference/climate_criteria.html">climate_criteria()</a></code> compute agroclimatic criteria from station or gridded monthly series (Thornthwaite, Hargreaves and FAO-56 Penman-Monteith evapotranspiration). <code><a href="reference/season_onset.html">season_onset()</a></code>, <code><a href="reference/dry_spell_index.html">dry_spell_index()</a></code> and <code><a href="reference/heat_days.html">heat_days()</a></code> describe the growing season; <code><a href="reference/land_points.html">land_points()</a></code> and <code><a href="reference/land_point_values.html">land_point_values()</a></code> extract station values from rasters; <code><a href="reference/ensemble_from_years.html">ensemble_from_years()</a></code>, <code><a href="reference/suit_risk.html">suit_risk()</a></code> and <code><a href="reference/suit_calendar.html">suit_calendar()</a></code> summarise interannual probability; <code><a href="reference/threshold_sensitivity.html">threshold_sensitivity()</a></code> and <code><a href="reference/method_sensitivity.html">method_sensitivity()</a></code> probe decisions; <code><a href="reference/planting_window.html">planting_window()</a></code> derives calendars; <code><a href="reference/apply_change_factors.html">apply_change_factors()</a></code> and <code><a href="reference/scenario_ensemble.html">scenario_ensemble()</a></code> organise climate-change runs; <code><a href="reference/conditional_suitability.html">conditional_suitability()</a></code> conditions suitability on climate modes; <code><a href="reference/validate_suitability.html">validate_suitability()</a></code>, <code><a href="reference/class_enrichment.html">class_enrichment()</a></code> and <code><a href="reference/compare_suitability.html">compare_suitability()</a></code> compare against an external reference with spatial block bootstrap; and optional <code>ggplot2</code> helpers under <code>plot_*()</code> prepare publication graphics.</p>
 </div>
 <div class="section level2">
 <h2 id="vignettes">Vignettes<a class="anchor" aria-label="anchor" href="#vignettes"></a>
@@ -233,12 +238,13 @@ aligned uncertainty ensembles
 <li><code>07-uncertainty-ensembles.Rmd</code></li>
 <li><code>08-multicrop-decision.Rmd</code></li>
 <li><code>09-reproducibility-interoperability.Rmd</code></li>
+<li><code>10-probabilistic-agroclimate.Rmd</code></li>
 </ol>
 </div>
 <div class="section level2">
 <h2 id="validation-status">Validation status<a class="anchor" aria-label="anchor" href="#validation-status"></a>
 </h2>
-<p>The 1.0.0 assembly is statically and numerically audited in this environment. R itself is not installed here, so executable <code>testthat</code>, vignette rendering, <code>R CMD build</code>, and <code>R CMD check --as-cran</code> must be completed locally. The creator/maintainer metadata now include the supplied address <code>walterufpb@yahoo.com.br</code>; formal release certification therefore depends only on the executable local validation steps and any issues they reveal.</p>
+<p>The 1.1.0 assembly was validated in R 4.6.0 on Windows 11: <code>R CMD check --no-manual</code> passed with no ERROR, WARNING or NOTE; 338 testthat expectations passed (4 skipped because the optional Python backends are absent); all examples of the 157 exported functions run in the check; and the station and gridded analyses of the probabilistic suitability case study were reproduced with the new functions, with the remaining differences explained in the build report.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">

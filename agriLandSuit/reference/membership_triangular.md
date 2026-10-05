@@ -29,3 +29,10 @@ membership_triangular(x, lower, optimum, upper)
 ## Value
 
 Object of the same data type as \`x\`, with membership in \[0, 1\].
+
+## Examples
+
+``` r
+membership_triangular(c(-1, 0, 1, 2, 3, 4, 5), lower = 0, optimum = 2, upper = 4)
+#> [1] 0.0 0.0 0.5 1.0 0.5 0.0 0.0
+```

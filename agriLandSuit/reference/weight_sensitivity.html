@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">agriLandSuit</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,6 +88,21 @@
     <p>An `agri_weight_sensitivity` object with scenario-level change metrics.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.9</span>, <span class="fl">.6</span>, <span class="fl">.7</span>, <span class="fl">.7</span>, <span class="fl">.8</span>, <span class="fl">.6</span>, <span class="fl">.5</span>, <span class="fl">.9</span>, <span class="fl">.8</span>, <span class="fl">.8</span>, <span class="fl">.4</span>, <span class="fl">.9</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">3</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>            dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"zone"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"climate"</span>, <span class="st">"soil"</span>, <span class="st">"terrain"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">ws</span> <span class="op">&lt;-</span> <span class="fu">weight_sensitivity</span><span class="op">(</span><span class="va">z</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>climate <span class="op">=</span> <span class="fl">0.4</span>, soil <span class="op">=</span> <span class="fl">0.35</span>, terrain <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span>, steps <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ws</span><span class="op">$</span><span class="va">scenarios</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   criterion factor    weight   mean_change mean_abs_change max_abs_change</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   climate    0.8 0.3478261 -0.0009782609     0.010760870    0.018695652</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   climate    0.9 0.3750000 -0.0004687500     0.005156250    0.008958333</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   climate    1.0 0.4000000  0.0000000000     0.000000000    0.000000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   climate    1.1 0.4230769  0.0004326923     0.004759615    0.008269231</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   climate    1.2 0.4444444  0.0008333333     0.009166667    0.015925926</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6      soil    0.8 0.3010753  0.0029166667     0.013266129    0.021451613</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

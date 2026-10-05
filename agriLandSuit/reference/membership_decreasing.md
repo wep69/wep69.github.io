@@ -25,3 +25,10 @@ membership_decreasing(x, suitable, unsuitable)
 ## Value
 
 Object of the same data type as \`x\`, with membership in \[0, 1\].
+
+## Examples
+
+``` r
+membership_decreasing(c(0, 5, 10, 20, 30), suitable = 5, unsuitable = 20)
+#> [1] 1.0000000 1.0000000 0.6666667 0.0000000 0.0000000
+```

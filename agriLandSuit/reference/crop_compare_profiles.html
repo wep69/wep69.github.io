@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">agriLandSuit</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,6 +56,23 @@
     <p>An `agri_crop_comparison` data.frame indicating which criteria are present.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">lib</span> <span class="op">&lt;-</span> <span class="fu"><a href="crop_profile_library.html">crop_profile_library</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"maize"</span>, <span class="st">"sorghum"</span>, <span class="st">"bean"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">crop_compare_profiles</span><span class="op">(</span><span class="va">lib</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;agri_crop_comparison&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  criterion mz_maize_rainfed mz_sorghum_rainfed mz_bean_rainfed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        AWC             TRUE               TRUE            TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         CV             TRUE               TRUE            TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        LGP             TRUE               TRUE            TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Pseason             TRUE               TRUE            TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        SOC             TRUE               TRUE            TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Tseason             TRUE               TRUE            TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      Twarm             TRUE              FALSE            TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         pH             TRUE               TRUE            TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      slope             TRUE               TRUE            TRUE</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

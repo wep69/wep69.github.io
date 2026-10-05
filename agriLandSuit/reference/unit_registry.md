@@ -14,3 +14,16 @@ unit_registry()
 ## Value
 
 A data.frame with canonical unit labels and semantic domains.
+
+## Examples
+
+``` r
+head(unit_registry())
+#>   canonical      domain
+#> 1      degC temperature
+#> 2         K temperature
+#> 3        mm      length
+#> 4    mm/day        rate
+#> 5   mm/year        rate
+#> 6         %  percentage
+```

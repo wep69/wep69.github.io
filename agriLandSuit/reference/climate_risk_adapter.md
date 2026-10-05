@@ -56,3 +56,14 @@ climate_risk_adapter(
 ## Value
 
 An \`agri_land_data\` object.
+
+## Examples
+
+``` r
+r <- terra::rast(ncols = 4, nrows = 3, xmin = 30, xmax = 34, ymin = -20, ymax = -17, crs = "EPSG:4326")
+lay <- function(v, n) { x <- r; terra::values(x) <- v; names(x) <- n; x }
+heat <- lay(runif(12), "heat_risk")
+x <- climate_risk_adapter(heat, role = "constraint_source", units = c(constraints.heat_risk = "dimensionless"))
+names(x$layers)
+#> [1] "constraints"
+```
